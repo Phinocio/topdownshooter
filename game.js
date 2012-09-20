@@ -1,20 +1,19 @@
 
-var canvas = document.getElementById('canvas');
-var canvasContext = null;
+var _canvas = document.getElementById('canvas');
+var _canvasContext = null;
 
 
 //Draw entire buffer onto main canvas: _canvasContext.drawImage(_canvasBuffer, 0, 0);
 
-drawMap();
-drawScreen();
+/* Loading */
 
 //HTML onLoad event - Loading the game
-Event.observe(window, 'load', function()
-	{
+$(window).load(function() {
 		//check whether browser supports getting canvas context
-		if (canvas && canvas.getContext) {
-		canvasContext = canvas.getContext('2d');
+		if (_canvas && _canvas.getContext) {
+		_canvasContext = canvas.getContext('2d');
 		// ... drawing here ...
+		_canvasContext.strokeStyle = "rgb(0,0,0)"
 		}
 
 		//Setup double buffering (_canvasBuffer)
@@ -27,10 +26,57 @@ Event.observe(window, 'load', function()
 		_canvasBufferContext = _canvasBuffer.getContext('2d');
 		}
 
+		//Event listeners for keystrokes
 		window.addEventListener('keydown', handleKeyDown, true);
 		window.addEventListener('keyup', handleKeyUp, true);
+
+		//Finally call the game loop
+		game();
 	}
-})
+)
+
+/* Game Loop */
+
+function game()
+{
+	draw();
+	update();
+	setTimeout('game()', 10) //Every 10ms
+}
+
+function draw() {
+	drawMap();
+	_canvasContext.fillRect(player.x, player.y, 30, 30);
+	_canvasContext.drawImage(_canvasBuffer, 0, 0);
+}
+
+function update() {
+	handleInteractions()
+	player.x += player.velx;
+	player.y += player.vely;
+}
+
+
+/* Player */
+
+player = new player();
+
+function player()
+{
+	this.velx = 1;
+	this.vely = 1;
+	this.x = 0;
+	this.y = 0;
+	this.img = 'images/tile2.png';
+}
+
+function drawPlayer() {
+
+}
+
+/* Interactivity */
+keys = [];
+
 //Disable browsers usual function of scrolling with up/down arrow keys
 document.onkeydown=function(){return event.keyCode!=38 && event.keyCode!=40}  
 
@@ -43,16 +89,21 @@ function handleKeyUp(evt) {
 
 function handleInteractions() {
 	if (keys[38]) { //Up arrow
-		player.vely = -50;
+		player.vely = -2;
+
 	}
 	else if (keys[37]) { //Left Arrow
-		player.velx = -50;
+		player.velx = -2;
 	}
 	else if (keys[39]) {
-		player.velx = 50;
+		player.velx = 2;
 	}
-	else if (keys [40] {
-		player.vely = 50;
+	else if (keys [40]) {
+		player.vely = 2;
+	}
+	else {
+		player.vely = 0;
+		player.velx = 0;
 	}
 }
 
