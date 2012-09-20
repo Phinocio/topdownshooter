@@ -52,10 +52,10 @@ function drawMap()
 function mapTileImage(id)
 {
 	//Converts map array # value to image file
-	if (id === 1)
+	if (id === 0)
 	{
 		return "images/tile1.png";
-	} else if(id === 0)
+	} else if(id === 1)
 	{
 		return "images/tile2.png"
 	}
