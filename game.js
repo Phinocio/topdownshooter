@@ -41,38 +41,22 @@ function game()
 {
 	draw();
 	update();
-	setTimeout('game()', 10) //Every 10ms
+	setTimeout('game()', 10); //Every 10ms
 }
 
 function draw() {
 	drawMap();
-	_canvasContext.fillRect(player.x, player.y, 30, 30);
+	drawPlayer();
 	_canvasContext.drawImage(_canvasBuffer, 0, 0);
 }
 
 function update() {
 	handleInteractions()
-	player.x += player.velx;
-	player.y += player.vely;
+	movePlayer();
 }
 
 
-/* Player */
 
-player = new player();
-
-function player()
-{
-	this.velx = 1;
-	this.vely = 1;
-	this.x = 0;
-	this.y = 0;
-	this.img = 'images/tile2.png';
-}
-
-function drawPlayer() {
-
-}
 
 /* Interactivity */
 keys = [];
@@ -89,21 +73,19 @@ function handleKeyUp(evt) {
 
 function handleInteractions() {
 	if (keys[38]) { //Up arrow
-		player.vely = -2;
-
+		player.direction = "up";
 	}
 	else if (keys[37]) { //Left Arrow
-		player.velx = -2;
+		player.direction = "left";
 	}
-	else if (keys[39]) {
-		player.velx = 2;
+	else if (keys[39]) { //right arrow
+		player.direction = "right";
 	}
-	else if (keys [40]) {
-		player.vely = 2;
+	else if (keys [40]) { //down arrow
+		player.direction = "down";
 	}
 	else {
-		player.vely = 0;
-		player.velx = 0;
+
 	}
 }
 
