@@ -25,46 +25,63 @@ function changePlayerSprite2() {
 }
 
 function drawPlayer() {
-	_canvasContext.drawImage(player.img, player.x, player.y, 20, 20);
+	_canvasContext.drawImage(player.img, player.x, player.y, 2, 2);
 }
 
 function movePlayer() {
-	
-	xtile = (player.x - 5) / 32;
-	xtile = Math.round(xtile, 0);
-	ytile = (player.y - 5) / 32;
-	ytile = Math.round(ytile, 0);
-	//Debugging
-	_canvasContext.filleStyle = "rgb(100, 230, 100)";
-	_canvasContext.fillRect(xtile*32, ytile*32, 32, 32)
-	
-	currentTile = mapArray[xtile][ytile];
-
-	
-	console.log("player.x:" + xtile);
-	//console.log("player.y:" + ytile);
-	console.log("currentTile: " + currentTile);
-
-	if (currentTile == 1)
-	{
-		player.velx = player.velx * 0;
-	}
+	topLeftCorner = getTileAtCoordinates(player.x, player.y);
+	console.log("TILE: " + topLeftCorner)
+	console.log("player.x: " + player.x);
+	console.log("player.y: " + player.y);
 
 	if (player.direction == "up")
 	{
-		player.y--;
+		if (1)
+		{
+			player.y--;
+		}
 	}
 	else if (player.direction == "down")
 	{
-		player.y++;
+		if (1)
+		{
+			player.y++;
+		}
 	}
 	else if (player.direction == "left")
 	{
-		player.x--;
+		if (1)
+		{
+			player.x--;
+		}
 	}
 	else if (player.direction == "right")
 	{
-		player.x++;
+		if (1)
+		{
+			player.x++;
+		}
 	}
 
+}
+
+function getTileAtCoordinates(x,y) {
+	xTile = Math.ceil((x+1)/32)-1
+	yTile = Math.ceil((y+1)/32)-1
+
+	/*if (x < 32) x = 32;
+	if (y < 32) y = 32;
+	xTile = x;
+	xTile = xTile - (x % 32);
+	xTile = x / 32;
+
+	yTile = y;
+	yTile = yTile - (x % 32);
+	yTile = y / 32;
+	
+	yTile--;
+	xTile--;
+*/
+	//console.log("Current tile: "+getMapTile(xTile, yTile));
+	return getMapTile(xTile, yTile);
 }

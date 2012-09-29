@@ -58,24 +58,7 @@ function mapTileImage(id)
 	}
 }
 
-isSolid = function() {
-	var currentTile = mapArray[currentLocation[1]][currentLocation[0]];
-	for (var attr in buildList) {
-		if (buildList[attr].src === whatToBuild) {
-			if (buildList[attr].type === "trap") {
-				if (currentTile === 1) {
-					return true;
-				} else {
-					return false;
-				}
-			} else {
-				if (currentTile === 0) {
-					return true;
-				} else {
-					return false;
-				}
-			}
-		}
-	}
-	return false;
-};
+function getMapTile(x, y)
+{
+	return mapArray[x][y];
+}
