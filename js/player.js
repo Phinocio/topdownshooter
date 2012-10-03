@@ -29,10 +29,9 @@ function drawPlayer() {
 }
 
 function movePlayer() {
-	topLeftCorner = getTileAtCoordinates(player.x, player.y);
-	console.log("TILE: " + topLeftCorner)
-	console.log("player.x: " + player.x);
-	console.log("player.y: " + player.y);
+	tile = getTileAtCoordinates(player.x, player.y);
+
+	console.log("TILE: "+tile);
 
 	if (player.direction == "up")
 	{
@@ -68,6 +67,9 @@ function movePlayer() {
 function getTileAtCoordinates(x,y) {
 	xTile = Math.ceil((x+1)/32)-1
 	yTile = Math.ceil((y+1)/32)-1
+
+	console.log("Xtile: "+xTile);
+	console.log("YTILE: "+yTile);
 
 	/*if (x < 32) x = 32;
 	if (y < 32) y = 32;
