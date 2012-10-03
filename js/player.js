@@ -85,5 +85,5 @@ function getTileAtCoordinates(x,y) {
 	xTile--;
 */
 	//console.log("Current tile: "+getMapTile(xTile, yTile));
-	return getMapTile(xTile, yTile);
+	return getMapTile(yTile, xTile);
 }
