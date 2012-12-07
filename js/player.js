@@ -25,7 +25,7 @@ function changePlayerSprite2() {
 }
 
 function drawPlayer() {
-	_canvasContext.drawImage(player.img, player.x, player.y, 2, 2);
+	_canvasContext.drawImage(player.img, player.x, player.y, 30, 30);
 }
 
 function movePlayer() {
@@ -35,28 +35,28 @@ function movePlayer() {
 
 	if (player.direction == "up")
 	{
-		if (1)
+		if (getTileAtCoordinates(player.x, (player.y - 1)) != 1 && getTileAtCoordinates((player.x + 31), player.y -1))
 		{
 			player.y--;
 		}
 	}
 	else if (player.direction == "down")
 	{
-		if (1)
+		if (getTileAtCoordinates(player.x, (player.y + 31)) != 1 && getTileAtCoordinates((player.x+30), (player.y + 31)) != 1)
 		{
 			player.y++;
 		}
 	}
 	else if (player.direction == "left")
 	{
-		if (1)
+		if (getTileAtCoordinates((player.x - 1), player.y) != 1)
 		{
 			player.x--;
 		}
 	}
 	else if (player.direction == "right")
 	{
-		if (1)
+		if (getTileAtCoordinates((player.x + 31), player.y) != 1 && getTileAtCoordinates(player.x + 31, player.y+30) != 1)
 		{
 			player.x++;
 		}
@@ -85,5 +85,6 @@ function getTileAtCoordinates(x,y) {
 	xTile--;
 */
 	//console.log("Current tile: "+getMapTile(xTile, yTile));
+	//These are supposed to be in this order. Just how the array is set up. yTile for [x], xTile for [y]
 	return getMapTile(yTile, xTile);
 }
